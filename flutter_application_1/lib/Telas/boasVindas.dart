@@ -1,6 +1,6 @@
 
 
-//import 'dart:html';
+import 'dart:html';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +14,6 @@ class BoasvindasPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(child: 
       Padding(
-
         padding: const EdgeInsets.all(16.0),
         
         child: 
@@ -52,7 +51,7 @@ class BoasvindasPage extends StatelessWidget {
                    color: Colors.white,
                   
                  ),
-            
+                    //botao
                  child: TextFormField(decoration:InputDecoration(
                  hintText: "Escreva um nome",
                  border: InputBorder.none,

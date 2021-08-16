@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Telas/boasVindas.dart';
+import 'package:flutter_application_1/Telas/home.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: BoasvindasPage(),
+      home: HomePage(),
     );
   }
 }
