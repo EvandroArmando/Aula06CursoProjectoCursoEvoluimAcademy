@@ -10,9 +10,8 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Scaffold(
-       body: SafeArea(child: 
-       Padding(
-         padding: const EdgeInsets.all(16.0),
+       body:  Padding(
+         padding: const EdgeInsets.only(top: 16,right:16,left: 16),
          child: Column(
           crossAxisAlignment :CrossAxisAlignment.start,
            children: [
@@ -84,15 +83,69 @@ class HomePage extends StatelessWidget {
               Text("Agendamentos",style:TextStyle(fontSize:24)),
               TextButton(onPressed:(){}, child: Text("ver mais",style: TextStyle(fontSize: 24),))
             ],
-          )      
+          ),
+          SizedBox(
+            height:08,
+          ),
+          Expanded(child: ListView.builder(
+            itemBuilder: (BuildContext context, index) {
+            return Container(
+              height :85,
+              child: Row(
+                 children: [
+                   ClipRRect(
+                     borderRadius: BorderRadius.circular(8),
+                     child: Image.asset("imgs/bma2.png",
+                     width:80,
+                     height:80,
+                     ),
+
+                   ),
+                   SizedBox(width:12),
+                   Column(
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     children: [
+                       Text("Levantamento",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color:azulEscuro)),
+                       espacoPersonalizado(2,0),
+                       Row(
+                         children: [
+                           Text("ficha:"),
+                           Text("22 ",style: TextStyle(fontWeight: FontWeight.bold),),
+                         ],
+                         
+                       ),
+                       espacoPersonalizado(2, 0),
+                       Text("22 pessoas na fila"),
+                     ],
+                   )
+                 ],
+              ),
+            );
+           },
+          ),)     
         ],
-
+         
          ),
+         
        ),
-       ),
+        bottomNavigationBar: BottomNavigationBar(selectedItemColor:azulEscuro,
+ items: [
+       BottomNavigationBarItem(icon:Icon(Icons.home),label: "Inicio",backgroundColor:azulClaro),
+       BottomNavigationBarItem(icon:Icon(Icons.add,color:Colors.black,),label: "Agendar",),
+       BottomNavigationBarItem(icon:Icon(Icons.history),label: "Historico"),
+       BottomNavigationBarItem(icon:Icon(Icons.business),label: "negocos"),
 
+        ]),
       ),
     );
+  }
+
+  SizedBox espacoPersonalizado(double altura, double largura) {
+    return SizedBox(
+                       height: altura,
+                       width: largura,
+                     );
   }
 
   SizedBox espacoVertical() {
@@ -145,5 +198,6 @@ class HomePage extends StatelessWidget {
                     ],
                  ),
                );
+      
   }
 }
