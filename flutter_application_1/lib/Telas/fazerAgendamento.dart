@@ -16,9 +16,39 @@ class FazerAgendamento extends StatelessWidget {
          children: [
            Text("Fazer Agendamento",style: TextStyle(color: azulEscuro,fontWeight: FontWeight.bold,fontSize: 32),),
            SizedBox(height: 30,),
-           Text("Que serviço pretendes realizar",style:TextStyle(fontSize: 16),)
+           Text("Que serviço pretendes realizar",style:TextStyle(fontSize: 16),),  
 
+           SizedBox(
+             height: 12,
+           ),
+            Container(
+              width: MediaQuery.of(context).size.width -32,
+              height: 60,
+              
+              child: DropdownButton <String>(
+              value: "Levantamento",
+              underline: Container(),
+              onChanged: (novo) {},  
+              items: [
+              "Levantamento",
+              "Deposito",
+              "Cartões /Cheques",
+              "Abertura de Contas",
+              "Outros"
+              ]
+              .map<DropdownMenuItem<String>>((String e) => DropdownMenuItem<String>(value:e,
+               
+              
+              child: Container(
+                alignment: Alignment.centerLeft,
+                width: MediaQuery.of(context).size.width -95,
+                child: Text(e))))
+              
+              .toList(),),
+            ),
+            
          ],
+
          
        ),
      ),
