@@ -22,60 +22,7 @@ class SelecionarAgenciaPage extends StatelessWidget {
             Expanded(child:
                 ListView.builder(scrollDirection:Axis.vertical,itemBuilder: (BuildContext context, int index) {
 
-              return Container(
-                height: 90,
-                child: Column(
-                  children: [
-                        Row(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.asset("imgs/bma2.png",
-                              width: 80,
-                              height: 80,
-                              ),
-
-                            ),
-                            SizedBox(width: 12,),
-                            
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Text("Agencia Talatona",style: TextStyle(color: azulEscuro,fontSize: 20),),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Row(
-                                  children: [
-                                    Text("Banco Bai",style: TextStyle(),),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 4,
-                                ),
-                                Row(
-                                  children: [
-                                        Text("Av Comandante Gika")
-
-                                  ],
-                                )
-                              ],
-                            ),
-                            
-                          ],
-                          
-                        ),
-                      
-                    
-                    
-                  ],
-                ),
-                
-              );
+              return AgenciaWidget();
             })
 
               
@@ -83,6 +30,70 @@ class SelecionarAgenciaPage extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class AgenciaWidget extends StatelessWidget {
+  const AgenciaWidget({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 90,
+      child: Column(
+        children: [
+              Row(
+                children: [
+                  ClipRRect(  //colocar imagem  redonda
+                    borderRadius: BorderRadius.circular(20),
+                    child: Image.asset("imgs/bma2.png",
+                    width: 80,
+                    height: 80,
+                    ),
+
+                  ),
+                  SizedBox(width: 12,),
+                  
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Text("Agencia Talatona",style: TextStyle(color: azulEscuro,fontSize: 20),),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        children: [
+                          Text("Banco Bai",style: TextStyle(),),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Row(
+                        children: [
+                              Text("Av Comandante Gika")
+
+                        ],
+                      )
+                    ],
+                  ),
+                  
+                ],
+                
+              ),
+            
+          
+          
+        ],
+      ),
+      
     );
   }
 }

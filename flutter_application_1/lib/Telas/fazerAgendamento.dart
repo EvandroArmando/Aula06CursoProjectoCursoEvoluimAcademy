@@ -72,7 +72,8 @@ class FazerAgendamento extends StatelessWidget {
                   child: Container(
                     child: TextFormField(
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "##-##-###"),
+                          border: InputBorder.none,
+                           hintText: "##-##-###"),
                     ),
                   ),
                 )

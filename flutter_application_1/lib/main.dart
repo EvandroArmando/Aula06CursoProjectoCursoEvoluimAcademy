@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Telas/SelectAgencia.dart';
 import 'package:flutter_application_1/Telas/fazerAgendamento.dart';
 import 'package:flutter_application_1/Telas/home.dart';
+import 'package:flutter_application_1/Telas/verAgendamento.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: FazerAgendamento(),
+      home: VerAgendamentoPage(),
     );
   }
 }
