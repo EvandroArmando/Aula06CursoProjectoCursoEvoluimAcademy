@@ -72,8 +72,7 @@ class FazerAgendamento extends StatelessWidget {
                   child: Container(
                     child: TextFormField(
                       decoration: InputDecoration(
-                          border: InputBorder.none,
-                           hintText: "##-##-###"),
+                          border: InputBorder.none, hintText: "##-##-###"),
                     ),
                   ),
                 )
@@ -81,99 +80,71 @@ class FazerAgendamento extends StatelessWidget {
             ),
             Text("Selecione o horario pretendido"),
             SizedBox(height: 8),
-            
-              
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 120,
-                          height: 60,
-                          child: Card(
-                            elevation: 12,
-                            color: vermelhoBaixo,
-                            child: Center(
-                                child: Text(
-                              "08-10h",
-                            )
-                            ),
-                          ), 
-                        ),
-                        SizedBox(
-              
-                          width: 5,
-                        ),
-                        Container(
-                           width: 120,
-                           height: 60,
-                          child: Card(
-                            elevation: 6,
-                            color: Colors.white,
-                            child: Center(
-                                child: Text(
-                              "11h-13h",
-                            )
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 5,
-                        ),
-                        Container(
-                           width: 120,
-                           height: 60,
-                          child: Card(
-                            elevation: 12,
-                            color: lilasBaixo,
-                            child: Center(
-                                child: Text(
-                              "14-16h",
-                              
-                            ),
-                          
-                            
-              
-                            ),
-              
-                            
-                          ),
-              
-                          
-                        ),
-                      
-                 
-                      ],
-                    ),
-                    Expanded(child: Container(
-
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 120,
+                  height: 60,
+                  child: Card(
+                    elevation: 12,
+                    color: vermelhoBaixo,
+                    child: Center(
+                        child: Text(
+                      "08-10h",
                     )),
-                    Container(
-                      width: MediaQuery.of(context).size.width -32,
-                      height: 40,
-                      child: ElevatedButton(onPressed: () {}, 
-                      style: ElevatedButton.styleFrom(primary: lilasBaixo,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15)
-                      )
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Container(
+                  width: 120,
+                  height: 60,
+                  child: Card(
+                    elevation: 6,
+                    color: Colors.white,
+                    child: Center(
+                        child: Text(
+                      "11h-13h",
+                    )),
+                  ),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Container(
+                  width: 120,
+                  height: 60,
+                  child: Card(
+                    elevation: 12,
+                    color: lilasBaixo,
+                    child: Center(
+                      child: Text(
+                        "14-16h",
                       ),
-                      child: Text("Agendar")))
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Expanded(child: Container()),
+            Container(
+                width: MediaQuery.of(context).size.width - 32,
+                height: 40,
+                child: ElevatedButton(
 
-                  ],
-                  
-                  
-                 
-             
-          
-              
-          
-          
-
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                        primary: lilasBaixo,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15))),
+                    child: Text("Agendar")))
+          ],
         ),
-        
-        
       ),
-      
-      
     );
   }
 }

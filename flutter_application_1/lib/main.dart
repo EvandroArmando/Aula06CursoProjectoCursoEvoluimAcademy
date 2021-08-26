@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/Telas/SelectAgencia.dart';
+import 'package:flutter_application_1/Telas/boasVindas.dart';
 import 'package:flutter_application_1/Telas/fazerAgendamento.dart';
 import 'package:flutter_application_1/Telas/home.dart';
+import 'package:flutter_application_1/Telas/selectAgencia.dart';
 import 'package:flutter_application_1/Telas/verAgendamento.dart';
 
 void main() {
@@ -26,7 +27,19 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: VerAgendamentoPage(),
+      //home: BoasvindasPage(),
+
+      initialRoute: ":",
+      
+      routes: {
+           "/" :(context) => BoasvindasPage(),
+           "/home":(context) => HomePage(),
+            "/listar_agencias":(context) => SelecionarAgenciaPage(),
+           "/agendar":(context) =>FazerAgendamento(),
+           "/ver_agendamento":(context) => VerAgendamentoPage(),
+
+      },
+     
     );
   }
 }
