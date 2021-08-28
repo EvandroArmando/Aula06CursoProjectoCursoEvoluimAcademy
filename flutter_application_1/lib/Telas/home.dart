@@ -99,46 +99,11 @@ class HomePage extends StatelessWidget {
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (BuildContext context, index) {
-                    return Container(
-                      height: 85,
-                      child: Row(
-                        children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8),
-                            child: Image.asset(
-                              "imgs/bma2.png",
-                              width: 80,
-                              height: 80,
-                            ),
-                          ),
-                          SizedBox(width: 12),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text("Levantamento",
-                                  style: TextStyle(
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold,
-                                      color: azulEscuro)),
-                              espacoPersonalizado(2, 0),
-                              Row(
-                                children: [
-                                  Text("ficha:"),
-                                  Text(
-                                    "22 ",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                  ),
-                                ],
-                              ),
-                              espacoPersonalizado(2, 0),
-                              Text("22 pessoas na fila"),
-                            ],
-                          )
-                        ],
-                      ),
-                    );
+                    return InkWell(
+                        onTap: () {
+                          Navigator.pushNamed(context, "/ver_agendamento");
+                        },
+                        child: listaAgendamentos());
                   },
                 ),
               )
@@ -153,7 +118,6 @@ class HomePage extends StatelessWidget {
               } else {}
             },
             currentIndex: 0,
-
             items: [
               BottomNavigationBarItem(
                   icon: Icon(Icons.home),
@@ -169,37 +133,75 @@ class HomePage extends StatelessWidget {
                     Text("Agendar")
                   ],
                 ),
-                
                 label: "Agendar",
-
               ),
               BottomNavigationBarItem(
-                  icon: Column(
-                    children: [
-                      Icon(Icons.history,
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.history,
                       color: azulEscuro,
-
-                      ),
-                      Text("Historico")
-                    ],
-                    
-                  ), 
-                  label: "Historico",
-                  ),
+                    ),
+                    Text("Historico")
+                  ],
+                ),
+                label: "Historico",
+              ),
               BottomNavigationBarItem(
-                  icon: Column(
-                    children: [
-                      Icon(Icons.business,
+                icon: Column(
+                  children: [
+                    Icon(
+                      Icons.business,
                       color: azulEscuro,
-
-                      ),
-                      Text("Em espera")
-                    ],
-                  ), 
-                  label: "Em espera",
-                  
-                  ),
+                    ),
+                    Text("Em espera")
+                  ],
+                ),
+                label: "Em espera",
+              ),
             ]),
+      ),
+    );
+  }
+
+  Container listaAgendamentos() {
+    return Container(
+      height: 85,
+      child: Row(
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: Image.asset(
+              "imgs/bma2.png",
+              width: 80,
+              height: 80,
+            ),
+          ),
+          SizedBox(width: 12),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("Levantamento",
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      color: azulEscuro)),
+              espacoPersonalizado(2, 0),
+              Row(
+                children: [
+                  Text("ficha:"),
+                  Text(
+                    "22 ",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              espacoPersonalizado(2, 0),
+              Text("22 pessoas na fila"),
+            ],
+          )
+        ],
       ),
     );
   }

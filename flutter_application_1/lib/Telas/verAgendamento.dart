@@ -129,41 +129,50 @@ class VerAgendamentoPage extends StatelessWidget {
                   width: MediaQuery.of(context).size.width - 32,
                   height: 60,
                   child: ElevatedButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                          shape: RoundedRectangleBorder(
-                             borderRadius: BorderRadius.circular(18)
-                          ),
-                          content: Container(
-                            height: 180,
-                            alignment: Alignment.center,
-                            color: Colors.white,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(Icons.check,
-                                color: verdeBaixa,
-                                size :80,
-                                ),
-                                SizedBox(
-                                  height: 18,
-                                ),
-                                Text("Agendamento Cancelado com \n com sucesso",style:TextStyle(color: azulEscuro,fontSize: 20,fontWeight:FontWeight.bold),
-                                textAlign: TextAlign.center,
-                                )
-                              ],
-                            ),
-                          ),
-
-                            ),);
+                      onPressed: () async{
+                        await dialogoDoProcesso(context);
+                        Navigator.pushNamed(context, "/home");
                       },
                       style: ElevatedButton.styleFrom(
                           primary: vermelhoBaixo,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15))),
                       child: Text("Cancelar")))
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Future<dynamic> dialogoDoProcesso(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+        content: Container(
+          height: 180,
+          alignment: Alignment.center,
+          color: Colors.white,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.check,
+                color: verdeBaixa,
+                size: 80,
+              ),
+              SizedBox(
+                height: 18,
+              ),
+              Text(
+                "Agendamento Cancelado com \n com sucesso",
+                style: TextStyle(
+                    color: azulEscuro,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              )
             ],
           ),
         ),

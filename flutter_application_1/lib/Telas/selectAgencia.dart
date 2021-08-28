@@ -18,15 +18,18 @@ class SelecionarAgenciaPage extends StatelessWidget {
               style: TextStyle(
                   color: azulEscuro, fontWeight: FontWeight.bold, fontSize: 20),
             ),
-            SizedBox(height: 30,width: 30),
-            Expanded(child:
-                ListView.builder(scrollDirection:Axis.vertical,itemBuilder: (BuildContext context, int index) {
-
-              return AgenciaWidget();
-            })
-
-              
-            )
+            SizedBox(height: 30, width: 30),
+            Expanded(
+                child: ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {
+                      return InkWell(
+                          onTap: () async{
+                           await Navigator.pushNamed(context, "/agendar");
+                            Navigator.pop(context);
+                          },
+                          child: AgenciaWidget());
+                    }))
           ],
         ),
       ),
@@ -45,55 +48,54 @@ class AgenciaWidget extends StatelessWidget {
       height: 90,
       child: Column(
         children: [
-              Row(
+          Row(
+            children: [
+              ClipRRect(
+                //colocar imagem  redonda
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset(
+                  "imgs/bma2.png",
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+              SizedBox(
+                width: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ClipRRect(  //colocar imagem  redonda
-                    borderRadius: BorderRadius.circular(20),
-                    child: Image.asset("imgs/bma2.png",
-                    width: 80,
-                    height: 80,
-                    ),
-
-                  ),
-                  SizedBox(width: 12,),
-                  
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          Text("Agencia Talatona",style: TextStyle(color: azulEscuro,fontSize: 20),),
-                        ],
+                      Text(
+                        "Agencia Talatona",
+                        style: TextStyle(color: azulEscuro, fontSize: 20),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text("Banco Bai",style: TextStyle(),),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                              Text("Av Comandante Gika")
-
-                        ],
-                      )
                     ],
                   ),
-                  
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    children: [
+                      Text(
+                        "Banco Bai",
+                        style: TextStyle(),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 4,
+                  ),
+                  Row(
+                    children: [Text("Av Comandante Gika")],
+                  )
                 ],
-                
               ),
-            
-          
-          
+            ],
+          ),
         ],
       ),
-      
     );
   }
 }
