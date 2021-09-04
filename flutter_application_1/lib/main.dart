@@ -4,9 +4,15 @@ import 'package:flutter_application_1/Telas/fazerAgendamento.dart';
 import 'package:flutter_application_1/Telas/home.dart';
 import 'package:flutter_application_1/Telas/selectAgencia.dart';
 import 'package:flutter_application_1/Telas/verAgendamento.dart';
+import 'package:flutter_application_1/repositorios/agendaRepo.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return AgendaRepo();    //A minha app deve ter acesso a classe repo, e notifica os descendentes sempre que for feita uma alteraçao
+      },
+      child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -30,16 +36,14 @@ class MyApp extends StatelessWidget {
       //home: BoasvindasPage(),
 
       initialRoute: ":",
-      
-      routes: {
-           "/" :(context) => BoasvindasPage(),
-           "/home":(context) => HomePage(),
-            "/listar_agencias":(context) => SelecionarAgenciaPage(),
-           "/agendar":(context) =>FazerAgendamento(),
-           "/ver_agendamento":(context) => VerAgendamentoPage(),
 
+      routes: {
+        "/": (context) => BoasvindasPage(),
+        "/home": (context) => HomePage(),
+        "/listar_agencias": (context) => SelecionarAgenciaPage(),
+        "/agendar": (context) => FazerAgendamento(),
+        "/ver_agendamento": (context) => VerAgendamentoPage(),
       },
-     
     );
   }
 }

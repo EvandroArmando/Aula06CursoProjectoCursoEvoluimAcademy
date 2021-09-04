@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/cores.dart';
+import 'package:flutter_application_1/models/Agencia.dart';
+import 'package:flutter_application_1/repositorios/agendaRepo.dart';
+import 'package:provider/provider.dart';
 
 class SelecionarAgenciaPage extends StatelessWidget {
   const SelecionarAgenciaPage({Key? key}) : super(key: key);
@@ -20,16 +23,20 @@ class SelecionarAgenciaPage extends StatelessWidget {
             ),
             SizedBox(height: 30, width: 30),
             Expanded(
-                child: ListView.builder(
-                    scrollDirection: Axis.vertical,
-                    itemBuilder: (BuildContext context, int index) {
-                      return InkWell(
-                          onTap: () async{
-                           await Navigator.pushNamed(context, "/agendar");
-                            Navigator.pop(context);
-                          },
-                          child: AgenciaWidget());
-                    }))
+                child: Consumer<AgendaRepo>(builder: (context, state, Widget) {
+              return ListView.builder(
+                  itemCount: state.getAgencia().length,
+                  scrollDirection: Axis.vertical,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                        onTap: () async {
+                          await Navigator.pushNamed(context, "/agendar");
+                          Navigator.pop(context);
+                        },
+                        child:
+                            AgenciaWidget(agencia: state.getAgencia()[index]));
+                  });
+            }))
           ],
         ),
       ),
@@ -38,12 +45,15 @@ class SelecionarAgenciaPage extends StatelessWidget {
 }
 
 class AgenciaWidget extends StatelessWidget {
+  final Agencia? agencia;
   const AgenciaWidget({
     Key? key,
+    required this.agencia,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final agencia = this.agencia!;
     return Container(
       height: 90,
       child: Column(
@@ -54,7 +64,7 @@ class AgenciaWidget extends StatelessWidget {
                 //colocar imagem  redonda
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
-                  "imgs/bma2.png",
+                  agencia.banco.logo,
                   width: 80,
                   height: 80,
                 ),
@@ -68,7 +78,7 @@ class AgenciaWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Agencia Talatona",
+                        agencia.nome,
                         style: TextStyle(color: azulEscuro, fontSize: 20),
                       ),
                     ],
@@ -79,7 +89,7 @@ class AgenciaWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Banco Bai",
+                        agencia.banco.nome,
                         style: TextStyle(),
                       ),
                     ],
@@ -88,7 +98,7 @@ class AgenciaWidget extends StatelessWidget {
                     height: 4,
                   ),
                   Row(
-                    children: [Text("Av Comandante Gika")],
+                    children: [Text(agencia.endereco)],
                   )
                 ],
               ),

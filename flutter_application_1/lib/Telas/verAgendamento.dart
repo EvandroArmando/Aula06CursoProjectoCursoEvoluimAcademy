@@ -78,7 +78,7 @@ class VerAgendamentoPage extends StatelessWidget {
               SizedBox(
                 height: 16,
               ),
-              AgenciaWidget(),
+              AgenciaWidget(agencia: null,),
               SizedBox(
                 height: 12,
               ),

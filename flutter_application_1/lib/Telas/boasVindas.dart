@@ -2,9 +2,27 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Telas/home.dart';
 import 'package:flutter_application_1/cores.dart';
+import 'package:flutter_application_1/repositorios/agendaRepo.dart';
 
-class BoasvindasPage extends StatelessWidget {
+class BoasvindasPage extends StatefulWidget {
   const BoasvindasPage({Key? key}) : super(key: key);
+
+  @override
+  _BoasvindasPageState createState() => _BoasvindasPageState();
+}
+
+class _BoasvindasPageState extends State<BoasvindasPage> {
+  @override
+  void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      final repositorio = AgendaRepo.obterRepositorio(context);
+
+      if (repositorio.getUser() != null) {
+        Navigator.pushNamed(context, "/home");  //estudar essa funcao server para evitar o inicio de sessao
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,9 +90,9 @@ class BoasvindasPage extends StatelessWidget {
             ),
             Container(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Container(
-                  height: 40,
+                  height: 60,
                   width: MediaQuery.of(context).size.width - 16,
                   child: ElevatedButton(
                     onPressed: () {
