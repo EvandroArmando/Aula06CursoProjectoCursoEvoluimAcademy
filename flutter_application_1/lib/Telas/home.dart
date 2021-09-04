@@ -159,7 +159,8 @@ class HomePage extends StatelessWidget {
                 ),
                 label: "Em espera",
               ),
-            ]),
+            ]
+            ),
       ),
     );
   }
@@ -180,7 +181,6 @@ class HomePage extends StatelessWidget {
           SizedBox(width: 12),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text("Levantamento",
                   style: TextStyle(
