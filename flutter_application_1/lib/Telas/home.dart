@@ -105,14 +105,14 @@ class HomePage extends StatelessWidget {
                 SizedBox(
                   height: 08,
                 ),
-                   Expanded(   
-                                 
+                   Expanded(                 
                     child: 
-                  
                     Container(
                       alignment: Alignment.topCenter,
                       child: repositorios.getAgendamento().length == 0 ? Text("Sem agendamentos",style: TextStyle(color: Colors.red),):
+
                       ListView.builder(
+                        itemCount: repositorios.getAgendamento().length,
                         itemBuilder: (BuildContext context, index) {
                           return InkWell(
                               onTap: () {

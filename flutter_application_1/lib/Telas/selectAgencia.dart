@@ -27,14 +27,17 @@ class SelecionarAgenciaPage extends StatelessWidget {
               return ListView.builder(
                   itemCount: state.getAgencia().length,
                   scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {
+                  itemBuilder: (BuildContext context, int index) {  //passar agencia selecionada
+                    final agencia =state.getAgencia()[index];
                     return InkWell(
                         onTap: () async {
-                          await Navigator.pushNamed(context, "/agendar");
+                          await Navigator.pushNamed(context, "/agendar",
+                          
+                          arguments: agencia); //passar informaçoes para outra tela
                           Navigator.pop(context);
                         },
                         child:
-                            AgenciaWidget(agencia: state.getAgencia()[index]));
+                            AgenciaWidget(agencia: agencia));
                   });
             }))
           ],

@@ -2,9 +2,36 @@ import 'dart:html';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/cores.dart';
+import 'package:flutter_application_1/models/Agencia.dart';
+import 'package:flutter_application_1/models/agendamento.dart';
+import 'package:flutter_application_1/repositorios/agendaRepo.dart';
 
-class FazerAgendamento extends StatelessWidget {
+class FazerAgendamento extends StatefulWidget {
   const FazerAgendamento({Key? key}) : super(key: key);
+
+  @override
+  _FazerAgendamentoState createState() => _FazerAgendamentoState();
+}
+
+class _FazerAgendamentoState extends State<FazerAgendamento> {
+  Agencia? agencia; //aceita null safe
+  String servico = "Levantamento";
+  int horario = 0;
+  TextEditingController controller =
+      TextEditingController(); //maunusear as informaç\oes que vem
+  @override
+  void initState() {
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      setState(() {
+        agencia = ModalRoute.of(context)?.settings.arguments
+            as Agencia?; //buscar os argumentos passados da agencia
+      });
+
+      //buscar o id da agencia selecionada
+    });
+
+    super.initState();
+  } //dizer que posteriormente a variavel será vazia
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +42,7 @@ class FazerAgendamento extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Fazer Agendamento",
+              "Fazer Agendamento (${agencia?.nome})",
               style: TextStyle(
                   color: azulEscuro, fontWeight: FontWeight.bold, fontSize: 32),
             ),
@@ -35,9 +62,15 @@ class FazerAgendamento extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 32,
                 height: 60,
                 child: DropdownButton<String>(
-                  value: "Levantamento",
+                  value: servico,
                   underline: Container(),
-                  onChanged: (novo) {},
+                  onChanged: (novo) {
+                    setState(() {
+                      if (novo != null) {
+                        servico = novo;
+                      }
+                    });
+                  },
                   items: [
                     "Levantamento",
                     "Deposito",
@@ -71,8 +104,10 @@ class FazerAgendamento extends StatelessWidget {
                 Card(
                   child: Container(
                     child: TextFormField(
+                      controller: controller,
+                      maxLength: 10,
                       decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "##-##-###"),
+                          border: InputBorder.none, hintText: "####-##-##"),
                     ),
                   ),
                 )
@@ -86,13 +121,14 @@ class FazerAgendamento extends StatelessWidget {
                 Container(
                   width: 120,
                   height: 60,
-                  child: Card(
-                    elevation: 12,
-                    color: vermelhoBaixo,
-                    child: Center(
-                        child: Text(
-                      "08-10h",
-                    )),
+                  child: HorarioWidget(
+                    horario: "08-10h",
+                    selecionado: horario == 1,
+                    aoClicar: () {
+                      setState(() {
+                        horario = 1;
+                      });
+                    },
                   ),
                 ),
                 SizedBox(
@@ -101,13 +137,14 @@ class FazerAgendamento extends StatelessWidget {
                 Container(
                   width: 120,
                   height: 60,
-                  child: Card(
-                    elevation: 6,
-                    color: Colors.white,
-                    child: Center(
-                        child: Text(
-                      "11h-13h",
-                    )),
+                  child: HorarioWidget(
+                    horario: "11-13h",
+                    selecionado: horario == 2,
+                    aoClicar: () {
+                      setState(() {
+                        horario = 2;
+                      });
+                    },
                   ),
                 ),
                 SizedBox(
@@ -116,14 +153,14 @@ class FazerAgendamento extends StatelessWidget {
                 Container(
                   width: 120,
                   height: 60,
-                  child: Card(
-                    elevation: 12,
-                    color: lilasBaixo,
-                    child: Center(
-                      child: Text(
-                        "14-16h",
-                      ),
-                    ),
+                  child: HorarioWidget(
+                    horario: "14-16h",
+                    selecionado: horario == 3,
+                    aoClicar: () {
+                      setState(() {
+                        horario = 3;
+                      });
+                    },
                   ),
                 ),
               ],
@@ -133,9 +170,10 @@ class FazerAgendamento extends StatelessWidget {
                 width: MediaQuery.of(context).size.width - 32,
                 height: 40,
                 child: ElevatedButton(
+                    onPressed: ()  async {
+                       await salvarAgendamento();
+                        Navigator.pop(context);
 
-                    onPressed: () {
-                      Navigator.pop(context);
                     },
                     style: ElevatedButton.styleFrom(
                         primary: lilasBaixo,
@@ -144,6 +182,54 @@ class FazerAgendamento extends StatelessWidget {
                     child: Text("Agendar")))
           ],
         ),
+      ),
+    );
+  }
+
+  salvarAgendamento() {
+    if (controller.text.isNotEmpty) {
+      final agendamento = Agendamento(
+          1, servico, getHorario(horario), DateTime.parse(controller.text), 1);
+         AgendaRepo.obterRepositorio(context).addAgendamento(agendamento);
+
+    }
+
+  }
+
+  String getHorario(int horario) {
+    if (horario == 1) {
+      return "08h-10h";
+    }
+    if (horario == 2) {
+      return "11h-13h";
+    }
+
+    if (horario == 3) {
+      return "14h-16h";
+    }
+    return "";
+  }
+}
+
+class HorarioWidget extends StatelessWidget {
+  final String horario;
+  final bool selecionado;
+  final Function() aoClicar;
+  const HorarioWidget({
+    Key? key,
+    required this.horario,
+    this.selecionado = false,
+    required this.aoClicar,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: aoClicar,
+      child: Card(
+        elevation: 12,
+        color: selecionado ? lilasBaixo : Colors.white,
+        child: Center(child: Text(horario)),
       ),
     );
   }
