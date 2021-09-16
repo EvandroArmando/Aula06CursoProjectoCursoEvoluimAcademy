@@ -10,37 +10,39 @@ class SelecionarAgenciaPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Selecione a Agencia",
-              style: TextStyle(
-                  color: azulEscuro, fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(height: 30, width: 30),
-            Expanded(
-                child: Consumer<AgendaRepo>(builder: (context, state, Widget) {
-              return ListView.builder(
-                  itemCount: state.getAgencia().length,
-                  scrollDirection: Axis.vertical,
-                  itemBuilder: (BuildContext context, int index) {  //passar agencia selecionada
-                    final agencia =state.getAgencia()[index];
-                    return InkWell(
-                        onTap: () async {
-                          await Navigator.pushNamed(context, "/agendar",
-                          
-                          arguments: agencia); //passar informaçoes para outra tela
-                          Navigator.pop(context);
-                        },
-                        child:
-                            AgenciaWidget(agencia: agencia));
-                  });
-            }))
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Selecione a Agencia",
+                style: TextStyle(
+                    color: azulEscuro, fontWeight: FontWeight.bold, fontSize: 20),
+              ),
+              SizedBox(height: 30, width: 30),
+              Expanded(
+                  child: Consumer<AgendaRepo>(builder: (context, state, Widget) {
+                return ListView.builder(
+                    itemCount: state.getAgencia().length,
+                    scrollDirection: Axis.vertical,
+                    itemBuilder: (BuildContext context, int index) {  //passar agencia selecionada
+                      final agencia =state.getAgencia()[index];
+                      return InkWell(
+                          onTap: () async {
+                            await Navigator.pushNamed(context, "/agendar",
+                            
+                            arguments: agencia); //passar informaçoes para outra tela
+                            Navigator.pop(context);
+                          },
+                          child:
+                              AgenciaWidget(agencia: agencia));
+                    });
+              }))
+            ],
+          ),
         ),
       ),
     );

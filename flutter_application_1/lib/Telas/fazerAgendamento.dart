@@ -34,152 +34,156 @@ class _FazerAgendamentoState extends State<FazerAgendamento> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Fazer Agendamento (${agencia?.nome})",
-              style: TextStyle(
-                  color: azulEscuro, fontWeight: FontWeight.bold, fontSize: 32),
-            ),
-            SizedBox(
-              height: 30,
-            ),
-            Text(
-              "Que serviço pretendes realizar",
-              style: TextStyle(fontSize: 16),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Card(
-              elevation: 2,
-              child: Container(
-                width: MediaQuery.of(context).size.width - 32,
-                height: 60,
-                child: DropdownButton<String>(
-                  value: servico,
-                  underline: Container(),
-                  onChanged: (novo) {
-                    setState(() {
-                      if (novo != null) {
-                        servico = novo;
-                      }
-                    });
-                  },
-                  items: [
-                    "Levantamento",
-                    "Deposito",
-                    "Cartões /Cheques",
-                    "Abertura de Contas",
-                    "Outros"
-                  ]
-                      .map<DropdownMenuItem<String>>(
-                          (String e) => DropdownMenuItem<String>(
-                              value: e,
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 16),
-                                child: Container(
-                                    alignment: Alignment.centerLeft,
-                                    width:
-                                        MediaQuery.of(context).size.width - 95,
-                                    child: Text(e)),
-                              )))
-                      .toList(),
+
+    return SafeArea(
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: Padding(
+          padding: const EdgeInsets.only(top:8,left: 8,right: 8),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Fazer Agendamento (${agencia?.nome})",
+                style: TextStyle(
+                    color: azulEscuro, fontWeight: FontWeight.bold, fontSize: 32),
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              Text(
+                "Que serviço pretendes realizar",
+                style: TextStyle(fontSize: 16),
+              ),
+              SizedBox(
+                height: 12,
+              ),
+              Card(
+                elevation: 2,
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 60,
+                  child: DropdownButton<String>(
+                    value: servico,
+                    underline: Container(),
+                    onChanged: (novo) {
+                      setState(() {
+                        if (novo != null) {
+                          servico = novo;
+                        }
+                      });
+                    },
+                    items: [
+                      "Levantamento",
+                      "Deposito",
+                      "Cartões /Cheques",
+                      "Abertura de Contas",
+                      "Outros"
+                    ]
+                        .map<DropdownMenuItem<String>>(
+                            (String e) => DropdownMenuItem<String>(
+                                value: e,
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 16),
+                                  child: Container(
+                                      alignment: Alignment.centerLeft,
+                                      width:
+                                          MediaQuery.of(context).size.width - 95,
+                                      child: Text(e)),
+                                )))
+                        .toList(),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 12,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text("Em que dia?"),
-                Card(
-                  child: Container(
-                    child: TextFormField(
-                      controller: controller,
-                      maxLength: 10,
-                      decoration: InputDecoration(
-                          border: InputBorder.none, hintText: "####-##-##"),
+              SizedBox(
+                height: 12,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text("Em que dia?"),
+                  Card(
+                    child: Container(
+                      child: TextFormField(
+                        controller: controller,
+                        maxLength: 10,
+                        decoration: InputDecoration(
+                            border: InputBorder.none, hintText: "####-##-##"),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Text("Selecione o horario pretendido"),
+              SizedBox(height: 8),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 120,
+                    height: 60,
+                    child: HorarioWidget(
+                      horario: "08-10h",
+                      selecionado: horario == 1,
+                      aoClicar: () {
+                        setState(() {
+                          horario = 1;
+                        });
+                      },
                     ),
                   ),
-                )
-              ],
-            ),
-            Text("Selecione o horario pretendido"),
-            SizedBox(height: 8),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width: 120,
-                  height: 60,
-                  child: HorarioWidget(
-                    horario: "08-10h",
-                    selecionado: horario == 1,
-                    aoClicar: () {
-                      setState(() {
-                        horario = 1;
-                      });
-                    },
+                  SizedBox(
+                    width: 5,
                   ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  width: 120,
-                  height: 60,
-                  child: HorarioWidget(
-                    horario: "11-13h",
-                    selecionado: horario == 2,
-                    aoClicar: () {
-                      setState(() {
-                        horario = 2;
-                      });
-                    },
+                  Container(
+                    width: 120,
+                    height: 60,
+                    child: HorarioWidget(
+                      horario: "11-13h",
+                      selecionado: horario == 2,
+                      aoClicar: () {
+                        setState(() {
+                          horario = 2;
+                        });
+                      },
+                    ),
                   ),
-                ),
-                SizedBox(
-                  width: 5,
-                ),
-                Container(
-                  width: 120,
-                  height: 60,
-                  child: HorarioWidget(
-                    horario: "14-16h",
-                    selecionado: horario == 3,
-                    aoClicar: () {
-                      setState(() {
-                        horario = 3;
-                      });
-                    },
+                  SizedBox(
+                    width: 5,
                   ),
-                ),
-              ],
-            ),
-            Expanded(child: Container()),
-            Container(
-                width: MediaQuery.of(context).size.width - 32,
-                height: 40,
-                child: ElevatedButton(
-                    onPressed: ()  async {
-                       await salvarAgendamento();
-                        Navigator.pop(context);
-
-                    },
-                    style: ElevatedButton.styleFrom(
-                        primary: lilasBaixo,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(15))),
-                    child: Text("Agendar")))
-          ],
+                  Container(
+                    width: 120,
+                    height: 60,
+                    child: HorarioWidget(
+                      horario: "14-16h",
+                      selecionado: horario == 3,
+                      aoClicar: () {
+                        setState(() {
+                          horario = 3;
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Expanded(child: Container()),
+              Container(
+                  width: MediaQuery.of(context).size.width - 32,
+                  height: 40,
+                  child: ElevatedButton(
+                      onPressed: ()  async {
+                         await salvarAgendamento();
+                          Navigator.pop(context);
+    
+                      },
+                      style: ElevatedButton.styleFrom(
+                          primary: lilasBaixo,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15))),
+                      child: Text("Agendar")))
+            ],
+          ),
         ),
       ),
     );
@@ -188,7 +192,7 @@ class _FazerAgendamentoState extends State<FazerAgendamento> {
   salvarAgendamento() {
     if (controller.text.isNotEmpty) {
       final agendamento = Agendamento(
-          1, servico, getHorario(horario), DateTime.parse(controller.text), 1);
+          1, servico, getHorario(horario), DateTime.parse(controller.text), 1,agencia!);
          AgendaRepo.obterRepositorio(context).addAgendamento(agendamento);
 
     }
