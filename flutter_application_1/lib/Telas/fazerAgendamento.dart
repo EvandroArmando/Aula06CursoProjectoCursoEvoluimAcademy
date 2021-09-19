@@ -16,8 +16,7 @@ class _FazerAgendamentoState extends State<FazerAgendamento> {
   Agencia? agencia; //aceita null safe
   String servico = "Levantamento";
   int horario = 0;
-  TextEditingController controller =
-      TextEditingController(); //maunusear as informaç\oes que vem
+  TextEditingController controller =TextEditingController(); //maunusear as informações que vem
   @override
   void initState() {
     WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
@@ -34,8 +33,7 @@ class _FazerAgendamentoState extends State<FazerAgendamento> {
 
   @override
   Widget build(BuildContext context) {
-
-    return SafeArea(
+ return SafeArea(
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: Padding(
@@ -109,7 +107,7 @@ class _FazerAgendamentoState extends State<FazerAgendamento> {
                         controller: controller,
                         maxLength: 10,
                         decoration: InputDecoration(
-                            border: InputBorder.none, hintText: "####-##-##"),
+                        border: InputBorder.none, hintText: "####-##-##"),
                       ),
                     ),
                   )

@@ -36,13 +36,14 @@ class AgendaRepo extends ChangeNotifier {
 
   void addAgencia(Agencia agencia) {
     this._agencias.add(agencia);
-    notifyListeners(); //notificar sempre a mudança sempre que haver um novo agendamento
+    notifyListeners();
+     //notificar sempre a mudança sempre que haver um novo agendamento
   }
 
   void addAgendamento(Agendamento agendamento) {
     this._agendamentos.add(agendamento);
     notifyListeners();
-  }
+  }  
 
   static AgendaRepo obterRepositorio(BuildContext context) {
     return Provider.of<AgendaRepo>(context,
