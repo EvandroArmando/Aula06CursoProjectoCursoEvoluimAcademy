@@ -26,7 +26,7 @@ class SelecionarAgenciaPage extends StatelessWidget {
               Expanded(
                   child: Consumer<AgendaRepo>(builder: (context, state, Widget) {
                 return ListView.builder(
-                    itemCount: 10,
+                    itemCount: state.getAgencia().length,
                     scrollDirection: Axis.vertical,
                     itemBuilder: (BuildContext context, int index) {  //passar agencia selecionada
                       final agencia =state.getAgencia()[index];
@@ -38,9 +38,7 @@ class SelecionarAgenciaPage extends StatelessWidget {
                             Navigator.pop(context);
                           },
                           child:
-                              AgenciaWidget(agencia: agencia)
-                              
-                        );
+                              AgenciaWidget(agencia: agencia));
                     });
               }))
             ],
