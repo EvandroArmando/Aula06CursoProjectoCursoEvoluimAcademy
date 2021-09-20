@@ -190,7 +190,7 @@ class _FazerAgendamentoState extends State<FazerAgendamento> {
   salvarAgendamento() {
     if (controller.text.isNotEmpty) {
       final agendamento = Agendamento(
-          1, servico, getHorario(horario), DateTime.parse(controller.text), 1,agencia!);
+          1, servico, getHorario(horario), DateTime.parse(controller.text), 1,agencia!,agencia!.banco_id,AgendaRepo.obterRepositorio(context).getUser()!.id);
          AgendaRepo.obterRepositorio(context).addAgendamento(agendamento);
 
     }
