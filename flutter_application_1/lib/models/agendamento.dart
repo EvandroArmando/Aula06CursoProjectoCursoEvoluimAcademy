@@ -3,12 +3,25 @@ import 'package:flutter_application_1/models/Agencia.dart';
 
 enum EstadoAgendamento { concluido, listaEspera, emCurso, cancelado }
 
+class EstadoConverter extends TypeConverter<EstadoAgendamento, int> {
+  @override
+  EstadoAgendamento decode(int databaseValue) {
+    return EstadoAgendamento.values[databaseValue];
+  }
+
+  @override
+  int encode(EstadoAgendamento value) {
+    return EstadoAgendamento.values.indexOf(value);
+  }
+}
+
 @entity
 class Agendamento {
-  @primaryKey
-  final int id;
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
   final String servico;
-  final DateTime dia;
+  final String dia;
+  @TypeConverters([EstadoConverter])
   EstadoAgendamento estado = EstadoAgendamento.listaEspera;
   final String Periodo;
   final agencia_id;

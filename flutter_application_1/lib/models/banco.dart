@@ -5,8 +5,8 @@ import 'Agencia.dart';
 
 @entity
 class Banco { 
-  @primaryKey
-  final int id;
+  @PrimaryKey (autoGenerate: true)
+  final int? id;
   final String nome;
   final String logo;
   List<Agencia> agencias = [];

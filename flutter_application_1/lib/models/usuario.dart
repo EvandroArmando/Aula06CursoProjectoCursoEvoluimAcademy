@@ -1,6 +1,11 @@
+
+import 'package:floor/floor.dart';
+
 class Usuario {
+  @PrimaryKey(autoGenerate: true)
+  final int? id;
   final String nome;
-  final int id;
+
 
   Usuario(this.id, this.nome);
 }
