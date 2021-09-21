@@ -9,7 +9,9 @@ class Banco {
   final int? id;
   final String nome;
   final String logo;
-  List<Agencia> agencias = [];
 
-  Banco(this.nome,this.logo,this.id);
+  @ignore
+  List<Agencia>? agencias = [];
+
+  Banco(this.nome,this.logo,this.id,{this.agencias});
 }

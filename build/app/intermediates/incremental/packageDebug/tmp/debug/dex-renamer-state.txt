@@ -1,4 +1,4 @@
-#Mon Sep 20 19:36:00 WAT 2021
-base.0=/Users/evandroarmando/Documents/GitHub/Aula06Curso/flutter_application_1/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
-path.0=classes.dex
+#Tue Sep 21 05:08:28 WAT 2021
+base.0=/Users/evandroarmando/Documents/GitHub/Aula06Curso/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
 renamed.0=classes.dex
+path.0=classes.dex

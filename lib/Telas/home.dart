@@ -281,7 +281,7 @@ class ListaAgendamento extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              agendamento.agencia.banco.logo,
+              agendamento.agencia!.banco!.logo,
               width: 80,
               height: 80,
             ),

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:floor/floor.dart';
 import 'package:flutter_application_1/models/banco.dart';
 
@@ -8,6 +10,7 @@ class Agencia {
   final String nome;
   final String endereco;
   final int banco_id;
-  final Banco banco;
-  Agencia(this.endereco, this.id, this.nome, this.banco, this.banco_id);
+  @ignore
+  final Banco? banco;
+  Agencia(this.endereco, this.id, this.nome, this.banco_id, {this.banco});
 }

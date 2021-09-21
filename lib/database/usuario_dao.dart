@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:flutter_application_1/models/Usuario.dart';
+import 'package:flutter_application_1/models/usuario.dart';
 
 @dao
 abstract class UsuarioDao {
@@ -13,5 +13,5 @@ abstract class UsuarioDao {
   Future<void> insertUsuario(Usuario usuario);
 
   @delete
-  Future <int> deleteAgendameto(Usuario usuario);
+  Future <int> deleteUsuario(Usuario usuario);
 }

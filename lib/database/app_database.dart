@@ -1,14 +1,15 @@
 import 'dart:async';
 import 'package:floor/floor.dart';
 import 'package:flutter_application_1/database/agencia_dao.dart';
-import 'package:flutter_application_1/database/agendamentoDao.dart';
-import 'package:flutter_application_1/database/banco_dao.dart';
 import 'package:flutter_application_1/database/usuario_dao.dart';
+import 'package:flutter_application_1/database/banco_dao.dart';
 import 'package:flutter_application_1/models/Agencia.dart';
 import 'package:flutter_application_1/models/agendamento.dart';
 import 'package:flutter_application_1/models/banco.dart';
 import 'package:flutter_application_1/models/usuario.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
+
+import 'agendamentoDao.dart';
 
 
 part 'app_database.g.dart'; // the generated code will be there

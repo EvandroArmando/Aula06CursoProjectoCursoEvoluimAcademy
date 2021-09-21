@@ -10,8 +10,8 @@ class AgendaRepo extends ChangeNotifier {
   Usuario? _usuario = Usuario(1, "Evandro");
 
   List<Agencia> _agencias = [
-       Agencia("kilamba 1 avenida", 1, "Agencia agostinho neto", Banco("Banco Bai","imgs/bma2.png", 2),1),
-      Agencia("Rocha 1 avenida", 1, "Agencia  Feira", Banco("Banco Atlantico", "imgs/bma2.png", 2),1)
+       Agencia("kilamba 1 avenida", 1, "Agencia agostinho neto",1,banco: Banco("Banco Atlantico", "imgs/bma2.png", 2)),
+      Agencia("Rocha 1 avenida", 1, "Agencia  Feira",1,banco: Banco("Banco Atlantico", "imgs/bma2.png", 2))
 
 
   ];

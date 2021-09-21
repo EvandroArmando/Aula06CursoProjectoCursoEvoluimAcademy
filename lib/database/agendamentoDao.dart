@@ -10,7 +10,7 @@ abstract class AgendamentoDao {
   Stream<Agendamento?> findAgendamentoById(int id);
 
   @insert
-  Future<void> insertAgendamento(Agendamento Agendamento);
+  Future<void> insertAgendamento(Agendamento agendamento);
 
   @delete
   Future <int> deleteAgendameto(Agendamento agendamento);

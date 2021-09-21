@@ -24,7 +24,7 @@ class SelecionarAgenciaPage extends StatelessWidget {
               ),
               SizedBox(height: 30, width: 30),
               Expanded(
-                  child: Consumer<AgendaRepo>(builder: (context, state, Widget) {
+                  child: Consumer<AgendaRepo>(builder: (context, state, widget) {
                 return ListView.builder(
                     itemCount: state.getAgencia().length,
                     scrollDirection: Axis.vertical,
@@ -69,7 +69,7 @@ class AgenciaWidget extends StatelessWidget {
                 //colocar imagem  redonda
                 borderRadius: BorderRadius.circular(20),
                 child: Image.asset(
-                  agencia.banco.logo,
+                  agencia.banco!.logo,
                   width: 80,
                   height: 80,
                 ),
@@ -94,7 +94,7 @@ class AgenciaWidget extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        agencia.banco.nome,
+                        agencia.banco!.nome,
                         style: TextStyle(),
                       ),
                     ],

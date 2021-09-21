@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:floor/floor.dart';
 import 'package:flutter_application_1/models/Agencia.dart';
 
@@ -24,11 +26,13 @@ class Agendamento {
   @TypeConverters([EstadoConverter])
   EstadoAgendamento estado = EstadoAgendamento.listaEspera;
   final String Periodo;
-  final agencia_id;
-  final Usuario_id;
+  final int agencia_id;
+  final int usuario_id;
   final int num_ficha;
-  final Agencia agencia;
+    
+  @ignore
+  final Agencia? agencia;
 
   Agendamento(this.id, this.servico, this.Periodo, this.dia, this.num_ficha,
-      this.agencia, this.agencia_id, this.Usuario_id);
+       this.agencia_id, this.usuario_id,{this.agencia});
 }

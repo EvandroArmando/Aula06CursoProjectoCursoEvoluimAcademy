@@ -13,5 +13,5 @@ abstract class AgenciaDao {
   Future<void> insertAgencia(Agencia agencia);
 
   @delete
-  Future <int>deleteAgendameto(Agencia agencia);
+  Future <int>deleteAgencia(Agencia agencia);
 }

@@ -1,5 +1,5 @@
 import 'package:floor/floor.dart';
-import 'package:flutter_application_1/models/Banco.dart';
+import 'package:flutter_application_1/models/banco.dart';
 
 @dao
 abstract class BancoDao {
@@ -13,5 +13,5 @@ abstract class BancoDao {
   Future<void> insertBanco(Banco banco);
 
   @delete
-  Future <int> deleteAgendameto(Banco banco);
+  Future <int> deleteBanco(Banco banco);
 }
